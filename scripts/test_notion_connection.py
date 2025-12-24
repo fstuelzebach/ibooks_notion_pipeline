@@ -1,36 +1,37 @@
+from pathlib import Path
 import os
 import json
 import requests
 from dotenv import load_dotenv
 
-# Load environment variables from .env
-load_dotenv()
+# Resolve project root (ibooks_notion_pipeline/)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+ENV_PATH = PROJECT_ROOT / ".env"  # or ".env" if you rename it later
+
+loaded = load_dotenv(ENV_PATH)
+
+if not loaded:
+    raise RuntimeError(f"Failed to load env file at {ENV_PATH}")
 
 NOTION_API_KEY = os.getenv("NOTION_API_KEY")
-NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID")  # optional if testing pages
+NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID")
 
 if not NOTION_API_KEY:
-    raise ValueError("No NOTION_API_KEY found in .env!")
+    raise ValueError("NOTION_API_KEY is missing or empty")
 
-# Base headers for Notion API
+if not NOTION_DATABASE_ID:
+    raise ValueError("NOTION_DATABASE_ID is missing or empty")
+
 HEADERS = {
     "Authorization": f"Bearer {NOTION_API_KEY}",
     "Notion-Version": "2022-06-28",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
 }
 
-# Example: list pages from a database
-database_id = NOTION_DATABASE_ID or "your-database-id-here"
-url = f"https://api.notion.com/v1/databases/{database_id}/query"
+url = f"https://api.notion.com/v1/databases/{NOTION_DATABASE_ID}/query"
 
-try:
-    response = requests.post(url, headers=HEADERS)
-    response.raise_for_status()
-    data = response.json()
-    print("Successfully connected to Notion! Here's a sample response:")
-    print(json.dumps(data, indent=2))
-except requests.exceptions.HTTPError as e:
-    print("HTTP error occurred:", e)
-    print(response.text)
-except Exception as e:
-    print("Other error occurred:", e)
+response = requests.post(url, headers=HEADERS)
+response.raise_for_status()
+
+print("Successfully connected to Notion!")
+print(json.dumps(response.json(), indent=2))

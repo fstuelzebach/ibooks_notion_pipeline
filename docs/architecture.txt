@@ -1,0 +1,36 @@
+dev
+├── projects
+│   ├── ibooks_notion_pipeline
+│   │   ├── data
+│   │   │   ├── derived
+│   │   │   ├── epubs
+│   │   │   ├── exports
+│   │   │   └── raw
+│   │   ├── docs
+│   │   │   └── architecture.md
+│   │   ├── ibooks_notion_pipeline
+│   │   │   ├── __pycache__
+│   │   │   │   ├── __init__.cpython-313.pyc
+│   │   │   │   ├── __init__.cpython-39.pyc
+│   │   │   │   ├── __main__.cpython-313.pyc
+│   │   │   │   ├── epub_parser.cpython-39.pyc
+│   │   │   │   ├── models.cpython-39.pyc
+│   │   │   │   ├── paths.cpython-313.pyc
+│   │   │   │   └── paths.cpython-39.pyc
+│   │   │   ├── __init__.py
+│   │   │   ├── __main__.py
+│   │   │   ├── config.py
+│   │   │   ├── epub_parser.py
+│   │   │   ├── models.py
+│   │   │   └── paths.py
+│   │   ├── scripts
+│   │   │   ├── epub_to_pdf.py
+│   │   │   ├── export_to_notion.py
+│   │   │   ├── inspect_ibooks.py
+│   │   │   └── test_notion_connection.py
+│   │   ├── Icon
+│   │   ├── poetry.lock
+│   │   ├── pyproject.toml
+│   │   └── README.md
+│   └── Icon
+└── Icon

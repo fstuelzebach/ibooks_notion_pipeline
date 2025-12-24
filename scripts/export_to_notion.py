@@ -1,3 +1,5 @@
+#export_to_notion.py
+
 from ibooks_notion_pipeline.config import NOTION_TOKEN, NOTION_DATABASE_ID
 import json
 from pathlib import Path
